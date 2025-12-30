@@ -1,8 +1,9 @@
-export default function Home(){
-return (
-<div style={{padding :"2rem"}}>
-<h1> GEORdr Frontend</h1>
-<p> Frontend Skeleton Initialized </p>
-</div>
-);
+export default function Home() {
+  return (
+    <main style={{ padding: "2rem" }}>
+      <h1>Welcome to the Frontend</h1>
+      <p>Next.js frontend initialized.</p>
+      <p>Map-based UI coming soon.</p>
+    </main>
+  );
 }

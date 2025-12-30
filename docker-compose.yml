@@ -1,0 +1,45 @@
+version: "3.9"
+
+services:
+  db:
+    image: postgis/postgis:15-3.4
+    container_name: geordr-db
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - geordr-network
+
+  backend:
+    build: ../backend
+    container_name: geordr-backend
+    env_file:
+      - ../.env
+    depends_on:
+      - db
+    ports:
+      - "8000:8000"
+    networks:
+      - geordr-network
+
+  frontend:
+    build: ../frontend
+    container_name: geordr-frontend
+    depends_on:
+      - backend
+    ports:
+      - "3000:3000"
+    networks:
+      - geordr-network
+
+volumes:
+  postgres_data:
+
+networks:
+  geordr-network:
+    driver: bridge
