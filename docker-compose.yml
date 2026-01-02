@@ -22,6 +22,7 @@ services:
       DATABASE_URL: postgresql://geordr_user:geordr_pass@db:5432/geordr
     ports:
       - "8000:8000"
+     
 
   frontend:
     build: ./frontend
